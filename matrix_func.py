@@ -30,6 +30,32 @@ def create_null_matrix():
     print_matrix(matrix_list)
     return matrix_list
     
+# Функция ручного заполнения матрицы
+def input_fill_matrix(matrix):
+    rows = len(matrix)
+    cols = len(matrix[0])
+    
+    print("Starting matrix fill...")
+    
+    for i in range(rows):
+        for j in range(cols):
+            # Показываем матрицу с указателем на текущую позицию
+            print(f"\nCurrent position: [{i}][{j}]")
+            temp_matrix = [row[:] for row in matrix]  # Копируем матрицу
+            temp_matrix[i][j] = "-"  # Помечаем текущую позицию
+            
+            print_matrix(temp_matrix, "Fill this position")
+            
+            # Получаем значение от пользователя
+            while True:
+                try:
+                    value = int(input("Enter value: "))
+                    matrix[i][j] = value
+                    break
+                except ValueError:
+                    print("Please enter a valid integer!")
+    
+    return matrix
 
 # Функция суммирования матрицы
 def matrix_sum(matrix_one, matrix_two):
@@ -67,10 +93,15 @@ matrix_two = [[1, 2, 3],
               [0, 5, 6],
               [0, 0, 9]]
 
-# Вычисление и вывод
+# # Вычисление и вывод
 # result = matrix_sum(matrix_one, matrix_two)
 
 # print_matrix(matrix_one, "Matrix One")
 # print_matrix(matrix_two, "Matrix Two")
 # print_matrix(result, "Sum Result")
-create_null_matrix()
+test_matrix = create_null_matrix()
+add_value = input_fill_matrix(test_matrix)
+
+print_matrix(add_value)
+
+
